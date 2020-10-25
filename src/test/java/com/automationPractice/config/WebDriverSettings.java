@@ -6,6 +6,7 @@ import org.junit.AfterClass;
 
 import org.junit.BeforeClass;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,6 +16,7 @@ public class WebDriverSettings {
     public static String PATH_CHROME_DRIVER = ConfigProperties.getProperty("chromedriver");
     public static RegPage regPage;
     public static FullRegPage fullRegPage;
+    public static WebDriverWait wait;
 
     @BeforeClass
     public static void setUp() {
@@ -22,11 +24,10 @@ public class WebDriverSettings {
         chromeDriver = new ChromeDriver();
         regPage = new RegPage(chromeDriver);
         fullRegPage = new FullRegPage(chromeDriver);
+        wait = new WebDriverWait(chromeDriver, 6);
 
         chromeDriver.manage().window().maximize();
         chromeDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
-        chromeDriver.get(ConfigProperties.getProperty("registrationPage"));
 
     }
 
