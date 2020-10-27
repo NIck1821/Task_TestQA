@@ -9,6 +9,7 @@ import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class FullCorrectRegPage extends WebDriverSettings {
         chromeDriver.get(ConfigProperties.getProperty("registrationPage"));
         chromeDriver.findElement(By.id("email_create")).sendKeys("Inalune@mail.ru");
         chromeDriver.findElement(By.id("SubmitCreate")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("account-creation_form")));
 
         fullRegPage.setFirstName(firstName);
         fullRegPage.setLastName(lastName);
@@ -29,8 +31,6 @@ public class FullCorrectRegPage extends WebDriverSettings {
 
         fullRegPage.clickRegister();
 
-        String a = chromeDriver.findElement(By.id("account-creation_form")).;
-        System.out.println(a);
-
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("alert alert-danger")));
     }
 }
